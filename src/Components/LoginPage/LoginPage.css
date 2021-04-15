@@ -1,0 +1,13 @@
+.login-page-container {
+	position: relative;
+	background-color: white;
+	width: 100vw;
+	height: 100vh;
+}
+
+.login-credentials-container {
+	position: relative;
+	background-color: black;
+	width: 800px;
+	height: 400px;
+}

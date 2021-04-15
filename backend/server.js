@@ -8,9 +8,6 @@ const AuthRoute = require('./routes/Auth')
 
 
 const app = express();
-
-
-
 app.use(express.json())
 
 
@@ -18,7 +15,6 @@ app.use(express.json())
 
 
 mongoose.connect('mongodb://localhost/testdb', { useNewUrlParser: true, useUnifiedTopology: true })
-
 const db = mongoose.connection;
 db.on('error', (error) => { console.log(error) })
 db.once('open', () => { console.log("-- CONNECTED --") })

@@ -35,9 +35,6 @@ const register = async (req,res,next) => {
             })
         })
     }
-   
-
-
 }
 
 
@@ -76,8 +73,6 @@ const login = (req,res,next) =>{
     )
 
 }
-
-
 
 module.exports = {
     login,

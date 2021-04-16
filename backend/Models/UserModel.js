@@ -2,6 +2,26 @@ const mongoose = require('mongoose')
 
 
 
+const workoutSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    dateCreated: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+
+    sets:{
+        type: Array,
+        required: true,
+
+    }
+})
+
+
+
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -29,73 +49,25 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+
+    workouts:{
+        
+        type: [workoutSchema],
+        required: true,
+        default: []
     }
 
     
 })
 
 
-const workoutSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    dateCreated: {
-        type: Date,
-        required: true,
-        default: Date.now
-    },
+
+
+
+module.exports = mongoose.model('User', userSchema), mongoose.model('Workout', workoutSchema)
     
-    id: {
-        type: Number,
-        required: true,
-        default: Math.floor(Math.random() * 100000)
-    },
-
-
-})
-
-
-
-module.exports = mongoose.model('User', userSchema)
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*class Student {
-    constructor(name, age, id, level, problemsSolved) {
-        this.name = name;
-        this.age = age;
-        this.id = id;
-        this.level = level;
-        this.problemsSolved = problemsSolved;
-    }
-
-
-
-    solvingProblem() {
-        this.problemsSolved += 1;
-        this.level += 0.21;
-    }
-}
-
-
-module.exports = Student*/

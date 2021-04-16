@@ -7,16 +7,17 @@ import './App.css';
 function App() {
 
 
-  const [viewState, setViewState] = useState('landing-page')
+  const [viewState, setViewState] = useState('login-page')
+  const [userData, setUserData] = useState()
 
 
   function renderViews(){
 
-    if(viewState === 'landing-page'){
-      return(<LandingPage changeView={setViewState}/>)
+    if(viewState === 'landing-page' && userData != null){
+      return(<LandingPage changeView={setViewState} setUserData={setUserData} userData={userData}/>)
     }
     else if(viewState === 'login-page'){
-      return(<LoginPage changeView={setViewState}/>)
+      return(<LoginPage changeView={setViewState} setUserData={setUserData}/>)
     }
 
   }

@@ -16,9 +16,21 @@ const LoginPage = (props) => {
         {name: username, password:password})
         .then((res) => {
             console.log(res)
-            setUserData(res.data)
+            if(res.data.error == null){
+              
+              props.changeView('landing-page')
+              props.setUserData(res.data)
+            }
+            else{
+              
+            }
+            
           
          })
+
+   
+
+          
     
       }
     
@@ -37,17 +49,6 @@ const LoginPage = (props) => {
         }
       }
 
-
-
-
-
-
-
-
-
-
-
-
     return ( <div className="login-page-container">
 
         <div className="login-credentials-container">
@@ -57,7 +58,7 @@ const LoginPage = (props) => {
    
      <button onClick={getInputs}>LOGIN</button>
      
-     {renderInfo()}
+     {renderInfo()}  
 
         </div>
       

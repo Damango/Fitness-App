@@ -1,0 +1,21 @@
+.workout-container {
+	position: relative;
+	background-color: white;
+	margin-bottom: 20px;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+	padding: 20px;
+}
+
+.delete-workout-button {
+	background-color: red;
+	color: white;
+	position: absolute;
+	border-style: none;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 5px 10px;
+}

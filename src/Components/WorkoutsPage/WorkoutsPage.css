@@ -4,3 +4,11 @@
 	height: 100vh;
 	background-color: white;
 }
+
+.workouts-list-container {
+	position: relative;
+	height: 100%;
+	width: 25%;
+	background-color: red;
+	overflow-y: scroll;
+}

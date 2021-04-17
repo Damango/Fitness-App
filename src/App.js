@@ -2,6 +2,7 @@ import axios from 'axios'
 import {useState} from 'react'
 import LandingPage from "./Components/LandingPage/LandingPage";
 import LoginPage from "./Components/LoginPage/LoginPage"
+import WorkoutsPage from "./Components/WorkoutsPage/WorkoutsPage"
 import './App.css';
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
 
     if(viewState === 'landing-page' && userData != null){
       return(<LandingPage changeView={setViewState} setUserData={setUserData} userData={userData}/>)
+    }
+    else if(viewState === 'workouts-page'){
+      return(<WorkoutsPage workouts={userData.workouts} changeView={setViewState}/>)
     }
     else if(viewState === 'login-page'){
       return(<LoginPage changeView={setViewState} setUserData={setUserData}/>)

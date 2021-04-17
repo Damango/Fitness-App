@@ -14,7 +14,7 @@ const LandingPage = (props) => {
 
     
    
-        <button>Workouts</button>
+        <button onClick={() => {props.changeView('workouts-page')}}>Workouts</button>
         <button>Nutrition</button>
         <button>Analytics</button>
        

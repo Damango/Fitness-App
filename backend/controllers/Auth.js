@@ -1,40 +1,56 @@
 const User = require('../Models/UserModel')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
-
+const { Mongoose } = require('mongoose')
 
 
 
 const register = async (req,res,next) => {
 
-    if(User.findOne({name:req.body.name})){
-        res.json({message: "Account Already Exists"})
-    }
-
-    else{
 
 
-        bcrypt.hash(req.body.password, 10, function(err, hashedPass){
-            if(err){
-                res.json({error:'FUCK'})
-            }
-    
-            let user = new User({
-                name: req.body.name,
-                email: req.body.email,
-                password: hashedPass,
-                premium: false
-            })
+
+
+    User.findOne({name:req.body.name}).then( user => {
+
+        console.log(user)
+
+        if(user){
+
+            res.json({message: "Account Already Exists",
+            info: req.body})
+        }
+        //console.log(User.findOne({name:req.body.name}))
+        else{
+
+
+            bcrypt.hash(req.body.password, 10, function(err, hashedPass){
+                if(err){
+                    res.json({error:'FUCK'})
+                }
         
-            user.save().then(user => {
-                res.json(user)
-            }).catch(error => {
-                res.json({
-                    message: "Error creating user"
+                let user = new User({
+                    name: req.body.name,
+                    email: 'req.body.email',
+                    password: hashedPass,
+                    premium: false,
+                    workouts:[]
+                }) 
+            
+                user.save().then(user => {
+                    res.json(user)
+                }).catch(error => {
+                    res.json({
+                        message: "Error creating user"
+                    })
                 })
             })
-        })
-    }
+        }
+
+            
+    })
+
+  
 }
 
 

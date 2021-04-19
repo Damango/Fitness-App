@@ -17,37 +17,37 @@ const LoginPage = (props) => {
         .then((res) => {
             console.log(res)
             if(res.data.error == null){
-              
               props.changeView('landing-page')
               props.setUserData(res.data)
             }
             else{
               
             }
-            
-          
          })
-
-   
-
-          
     
       }
-    
-      function renderInfo(){
-        if(userData != null){
-    
-          let theBool = new Boolean(userData.premium)
-    
-          return(
-            <div className="info-wrapper">
+
+
+      function registerUser(){
+
+        let username = document.querySelector('.username').value
+        let password = document.querySelector('.password').value
+        axios.post('http://localhost:5000/user/register', 
+        {name: username, password:password})
+        .then((res) => {
+            console.log(res)
+            if(res.data.error == null){
+              //props.changeView('landing-page')
+              //props.setUserData(res.data)
+            }
+            else{
               
-              <span>Name: {userData.name}</span>
-              <span>email: {userData.email}</span>
-              <span>premium: {theBool.toString()}</span>
-            </div>)
-        }
+            }
+         })
+        
+
       }
+
 
     return ( <div className="login-page-container">
 
@@ -57,8 +57,10 @@ const LoginPage = (props) => {
      <input placeholder="password" className="password"/>
    
      <button onClick={getInputs}>LOGIN</button>
+
+     <button onClick={registerUser}>REGISTER</button>
      
-     {renderInfo()}  
+
 
         </div>
       

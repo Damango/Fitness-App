@@ -11,13 +11,22 @@ const addWorkout = async (req,res,data) =>{
 
     if(User.findOne({name:req.body.name})){
 
-        let workouts = req.body.workouts;
-        console.log(req.body.workouts)
+        let workouts;
+
+        if(req.body.workouts == null){
+            workouts = []
+        }
+        else{
+            workouts = req.body.workouts;
+        }
+
+     
+       // console.log(req.body.workouts)
    
 
         let workout = {
-            title: 'SUP DAY Day',
-            sets: [Math.random() * 500]
+            title: req.body.title,
+            exercises: req.body.exercises
          }
 
 

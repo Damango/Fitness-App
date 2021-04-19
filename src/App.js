@@ -3,6 +3,7 @@ import {useState} from 'react'
 import LandingPage from "./Components/LandingPage/LandingPage";
 import LoginPage from "./Components/LoginPage/LoginPage"
 import WorkoutsPage from "./Components/WorkoutsPage/WorkoutsPage"
+import MainView from "./Components/MainView/MainView"
 import './App.css';
 
 function App() {
@@ -12,13 +13,14 @@ function App() {
   const [userData, setUserData] = useState()
 
 
+
   function renderViews(){
 
     if(viewState === 'landing-page' && userData != null){
       return(<LandingPage changeView={setViewState} setUserData={setUserData} userData={userData}/>)
     }
     else if(viewState === 'workouts-page'){
-      return(<WorkoutsPage workouts={userData.workouts} changeView={setViewState}/>)
+      return(<WorkoutsPage data={userData} setUserData={setUserData} workouts={userData.workouts} changeView={setViewState}/>)
     }
     else if(viewState === 'login-page'){
       return(<LoginPage changeView={setViewState} setUserData={setUserData}/>)
@@ -39,7 +41,7 @@ function App() {
 
   return (
     <div className="App">
-
+    
 
       {renderViews()}
 

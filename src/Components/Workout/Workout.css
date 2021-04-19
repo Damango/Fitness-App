@@ -1,12 +1,55 @@
 .workout-container {
 	position: relative;
 	background-color: white;
-	margin-bottom: 20px;
-	top: 20px;
+	margin-bottom: 30px;
+
+	top: 30px;
 	left: 50%;
 	transform: translateX(-50%);
 	width: 80%;
-	padding: 20px;
+	padding: 25px;
+	border-radius: 3px;
+	box-shadow: 0px 0px 5px 1px rgb(105, 105, 105);
+	transition: 0.2s;
+}
+.workout-container:hover {
+	background-color: rgb(238, 238, 238);
+	cursor: pointer;
+	box-shadow: 0px 0px 8px 2px rgb(148, 148, 148);
+	padding-right: 35px;
+	padding-left: 35px;
+}
+.workout-title {
+	position: relative;
+	font-family: "Roboto";
+	font-weight: bold;
+	display: inline-block;
+	margin-right: 20px;
+	font-size: 20px;
+	color: #2f3640;
+}
+
+.workout-date {
+	position: relative;
+	font-family: "Open Sans";
+	color: white;
+	background-color: #e74c3c;
+	padding: 5px 12px;
+	border-radius: 2px;
+	width: auto;
+	display: inline-block;
+	font-weight: 600;
+}
+
+.workout-set-count {
+	display: inline-block;
+	margin-left: 20px;
+	background-color: #2f3640;
+	color: white;
+	border-radius: 3px;
+	padding: 5px 10px;
+	font-family: "Open Sans";
+	font-weight: 600;
 }
 
 .delete-workout-button {

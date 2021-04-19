@@ -1,10 +1,21 @@
 import React, {useState} from 'react';
 import axios from 'axios'
+import WorkoutsPage from "../WorkoutsPage/WorkoutsPage"
 import "./LandingPage.css"
 
 const LandingPage = (props) => {
 
+    const [viewState, setViewState] = useState('workouts-page')
+    const [userData, setUserData] = useState(props.userData)
 
+    function renderViews(){
+
+        if(viewState === 'workouts-page'){
+          return(<WorkoutsPage data={userData} setUserData={setUserData} workouts={userData.workouts} changeView={setViewState}/>)
+        }
+       
+    
+      }
 
     //console.log(props.userData)
   
@@ -12,26 +23,20 @@ const LandingPage = (props) => {
 
     return ( <div className="landing-page-container">
 
+<div className="nav-bar-container">
+        <div className="nav-link">Workouts</div>
+        <div className="nav-link">Nutrition</div>
+        <div className="nav-link">Analytics</div>
+        <div className="nav-link">Account</div>
+      </div>
+
+
     
    
-        <button onClick={() => {props.changeView('workouts-page')}}>Workouts</button>
-        <button>Nutrition</button>
-        <button>Analytics</button>
        
 
-        <button onClick={() => {axios.post('http://localhost:5000/user/addworkout', props.userData)
-        .then(res =>{
 
-            let oldData = props.userData;
-            let newData = oldData;
-            newData.workouts = res.data
-
-         props.setUserData(newData);
-            console.log(newData);
-
-
-            });  } }>
-            CLICK ME</button>
+           { renderViews()}
 
 
     </div> );

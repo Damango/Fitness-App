@@ -1,14 +1,14 @@
 .workouts-page-container {
 	position: relative;
 	width: 100vw;
-	height: 100vh;
+	height: 92%;
 	background-color: white;
 }
 
 .workouts-list-container {
 	position: relative;
-	height: 100%;
-	width: 25%;
-	background-color: red;
+	height: 93%;
+	width: 30%;
+
 	overflow-y: scroll;
 }

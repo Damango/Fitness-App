@@ -43,13 +43,7 @@ const WorkoutsPage = (props) => {
 
         let workoutTitle = data.title;
         //let exercises = data.exercises
-        let exercises = [
-            {title: "Bench Press",
-            sets: [
-                {weight: 185,
-                reps: 15}
-            ]}
-        ]
+        let exercises = []
 
         let postObject ={name: props.data.name, workouts: props.data.workouts, title: workoutTitle, exercises: exercises}
         
@@ -69,6 +63,8 @@ const WorkoutsPage = (props) => {
     }
 
 
+   
+
     function renderWorkoutView(){
 
         if(workoutView === 'off'){
@@ -78,11 +74,11 @@ const WorkoutsPage = (props) => {
      
 
         else if(workoutView === 'on' && workoutViewData == 'new'){
-            return(<WorkoutView data={workoutViewData} closeWorkoutView={setWorkoutView} deleteWorkout={deleteWorkout} new={true} addWorkout={addWorkout}/>)
+            return(<WorkoutView data={workoutViewData} theName={props.data.name} closeWorkoutView={setWorkoutView} deleteWorkout={deleteWorkout} new={true} addWorkout={addWorkout}/>)
         }
 
         else if(workoutView === 'on'){
-            return(<WorkoutView data={workoutViewData} closeWorkoutView={setWorkoutView} deleteWorkout={deleteWorkout}/>)
+            return(<WorkoutView data={workoutViewData} theName={props.data.name} closeWorkoutView={setWorkoutView} deleteWorkout={deleteWorkout}/>)
         }
         
     }
@@ -95,8 +91,8 @@ const WorkoutsPage = (props) => {
 
 
         
-
-        
+        <div className="portal-button"></div>
+        <div className="workouts-section">
             <div>Workouts</div>
             <button onClick={() => {setWorkoutViewData('new'); setWorkoutView('on')}}>ADD WORKOUT</button>
         <div className="workouts-list-container">
@@ -106,6 +102,7 @@ const WorkoutsPage = (props) => {
 
 
 
+        </div>
         </div>
         <div className="statistics-container"></div>
         <div className="workout-templates-container"></div>

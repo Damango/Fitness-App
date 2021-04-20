@@ -1,0 +1,14 @@
+.category-container {
+	padding: 5px 10px;
+	border-radius: 2px;
+	color: white;
+	font-family: Poppins;
+}
+
+.Chest {
+	background-color: #e67e22;
+}
+
+.Back {
+	background-color: #3498db;
+}

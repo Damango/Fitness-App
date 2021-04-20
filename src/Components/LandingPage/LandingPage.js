@@ -23,13 +23,6 @@ const LandingPage = (props) => {
 
     return ( <div className="landing-page-container">
 
-<div className="nav-bar-container">
-        <div className="nav-link">Workouts</div>
-        <div className="nav-link">Nutrition</div>
-        <div className="nav-link">Analytics</div>
-        <div className="nav-link">Account</div>
-      </div>
-
 
     
    

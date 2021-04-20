@@ -4,7 +4,7 @@ const User = require('../Models/UserModel')
 const Workout = require('../Models/UserModel')
 
 
-const deleteWorkout = async (req,res,data) =>{
+const addSet = async (req,res,data) =>{
 
 
 //Create an area in database for recent workouts so you don't have to loop through all of them
@@ -13,27 +13,27 @@ const deleteWorkout = async (req,res,data) =>{
 let workouts;
 
 User.findOne({name:req.body.name}).then( (user) => {
-
+    
     workouts = user.workouts
-   
 
-    let i;
+    let i, j;
     for(i = 0; i < user.workouts.length; i++){
      
         if(workouts[i]._id == req.body.workoutID){
-           
-            workouts.splice(i, 1)
-            
-            
-           
+
+            for(j = 0; j < workouts[i].exercises.length; j++){
+                if(workouts[i].exercises[j].ID === req.body.exerciseID){
+                   
+                    workouts[i].exercises[j].sets.push(req.body.newSet)
+                }
+            }
+    
         }
     }
 
     User.updateOne({name: req.body.name},{workouts:workouts}).then( err => {console.log(err)})
-   
-
     res.json(user.workouts)
- 
+  
 })
 
  
@@ -43,5 +43,5 @@ User.findOne({name:req.body.name}).then( (user) => {
 
 
 module.exports = {
-   deleteWorkout
+   addSet
 }

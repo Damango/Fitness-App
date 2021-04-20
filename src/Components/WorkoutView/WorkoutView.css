@@ -1,37 +1,100 @@
 .workout-view-container {
 	position: absolute;
 	background-color: white;
-
-	width: 100%;
+	overflow-x: hidden;
+	width: 100vw;
 	height: 100%;
 	z-index: 5;
 }
 
 .workout-view-wrapper {
 	position: relative;
-	background-color: pink;
-	width: 90%;
-	height: 90%;
+
+	width: 80%;
+	height: 95%;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
 }
 
-.workout-view-container input {
-}
-
-.exercise-container {
-	position: relative;
-	background-color: white;
-	width: 80%;
-	left: 50%;
-	transform: translateX(-50%);
-	padding: 20px;
-}
-
-.set-number-container {
-	background-color: white;
-	border: 1px solid black;
+.workout-view-title {
+	font-size: 45px;
+	font-family: Roboto;
+	font-weight: bold;
 	display: inline-block;
-	padding: 5px;
+}
+
+.workout-chart-container {
+	width: 100%;
+	position: relative;
+	background: rgb(231, 76, 60);
+	background: linear-gradient(
+		90deg,
+		rgb(145, 44, 32) 0%,
+		rgb(126, 23, 11) 100%
+	);
+	height: 320px;
+}
+
+.bar-example {
+	background-color: #e74c3c;
+	width: 75px;
+	height: 195px;
+
+	position: relative;
+	margin-top: auto;
+}
+
+.example2 {
+	background-color: #c33a2c;
+	height: 125px;
+}
+
+.chart-selector-container {
+	display: flex;
+}
+
+.edit-workout-button {
+	position: absolute;
+	right: 0px;
+}
+
+.bars-container {
+	display: flex;
+	position: absolute;
+
+	width: 100%;
+	bottom: 0px;
+}
+
+.chart-selector-button {
+	position: relative;
+	width: 100%;
+	text-align: center;
+	border-right: 1px solid rgba(0, 0, 0, 0.329);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.329);
+	height: 90px;
+}
+
+.selector-number {
+	display: inline-block;
+	margin-left: 10px;
+	font-size: 26px;
+	color: #e74c3c;
+}
+.selector-button-text {
+	font-family: "Open Sans";
+	font-weight: bold;
+	color: #2f3640;
+	font-size: 23px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.exercises-container {
+	margin-top: 50px;
+}
+
+.workout-view-container input {
 }

@@ -1,11 +1,14 @@
 import axios from 'axios';
 import "./Exercise.css"
 import Category from "../Exercise/Category/Category"
+import { useSpring, animated } from 'react-spring'
 import React, {useState} from 'react';
 
 const Exercise = (props) => {
 
-    const [addSetRender, setAddSetRender] = useState('off')
+    const exerciseStyle = useSpring({from: {opacity: 0}, to:{opacity : 1}, delay:(props.index * 150) + 200})
+
+    const [addSetRender, setAddSetRender] = useState('+')
     const [setList, setSetList] = useState(props.data.sets);
     const [counter, setCounter] = useState(0)
 
@@ -14,11 +17,11 @@ const Exercise = (props) => {
 
 
     function setRender(){
-        if(addSetRender === 'on'){
+        if(addSetRender === '-'){
             return(<div className="set-inputs-container">
-                <input className={"weight-input-" + props.exerciseID} placeholder="Weight"/>
-                <input className={"reps-input-"+props.exerciseID} placeholder="Reps"/>
-                <button onClick={() => {addSet()}}>Submit</button>
+                <input className={"weight-input weight-input-" + props.exerciseID} placeholder="Weight"/>
+                <input className={"reps-input reps-input-"+props.exerciseID} placeholder="Reps"/>
+                <button className="submit-reps-button" onClick={() => {addSet()}}>Submit</button>
             </div>)
         }
         else{
@@ -63,6 +66,7 @@ const Exercise = (props) => {
         })
 
         setSetList(newList)
+        props.updateChart()
         setCounter(counter + 1)
         
 
@@ -75,21 +79,21 @@ const Exercise = (props) => {
 
 
 
-    return ( <div className="exercise-container">
+    return ( <animated.div style={exerciseStyle} className="exercise-container">
         <button className="delete-exercise-button" onClick={() => {props.deleteExercise(props.data.ID)}}>DELETE</button>
     <div className="exercise-title">{props.data.title}</div>
     <div className="exercise-categories">{props.data.categories.map((cat) => <Category category={cat}/>)}</div>
     <div className="exercise-volume"></div>
     <div className="exercise-sets-container">
         {setList.map((set) => <div className="set-number-container">{set.weight + ' x '+ set.reps}</div>)}
-        <button className="add-set-button" onClick={() => setAddSetRender('on')}>+</button>
+        <button className="add-set-button" onClick={() => {if(addSetRender == '+'){setAddSetRender('-')} else{setAddSetRender('+')} }}>{addSetRender}</button>
         {setRender()}
     </div>
     <div className="exercise-input-container">
     
     </div>
    
-</div> );
+</animated.div> );
 }
  
 export default Exercise;

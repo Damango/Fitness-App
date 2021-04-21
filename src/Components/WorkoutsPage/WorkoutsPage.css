@@ -26,3 +26,33 @@
 	top: 20px;
 	height: 90%;
 }
+
+.statistics-section {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+
+.statistics-container {
+	height: 450px;
+	width: 1150px;
+}
+
+.stats-info-container {
+	margin-top: 30px;
+}
+
+.stat-category-changer {
+	font-size: 30px;
+	font-weight: bold;
+	padding: 5px 10px;
+	border: 1px solid black;
+	display: inline-block;
+}
+
+.total-volume {
+	font-size: 40px;
+	font-weight: bold;
+	margin-top: 20px;
+	color: #2f3640;
+}

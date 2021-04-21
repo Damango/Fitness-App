@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import "./WorkoutsPage.css"
 import Workout from "../Workout/Workout"
 import WorkoutView from '../WorkoutView/WorkoutView'
+import LineChart from "../LineChart/LineChart"
+import { ResponsiveLine } from '@nivo/line'
 import axios from 'axios';
+import {Bar, Line} from 'react-chartjs-2'
 const WorkoutsPage = (props) => {
 
 
@@ -12,12 +15,89 @@ const WorkoutsPage = (props) => {
     const [workoutView,setWorkoutView] = useState('off')
     const [workoutViewData, setWorkoutViewData] = useState()
 
+    const [chartData, setChartData] = useState()
+
+    const [totalVolume, setTotalVolume] = useState()
+
+    useEffect(() => {
+        let data = workouts;
+
+        let dataObject = [{
+            id: "Volume",
+            color: "hsl(111, 70%, 50%)",
+            data: []
+     
+        }]
+
+        let i,j, k;
+        let totalVolume = 0;
+        for(i = 0; i < data.length; i++){
+
+            let theVolume = 0
+    
+            for(j = 0; j < data[i].exercises.length; j++){
+                for(k = 0; k < data[i].exercises[j].sets.length; k++){
+                    theVolume += (data[i].exercises[j].sets[k].reps * data[i].exercises[j].sets[k].weight);
+                    totalVolume += (data[i].exercises[j].sets[k].reps * data[i].exercises[j].sets[k].weight);
+                }
+            }
+            dataObject[0].data.push({
+                x: data[i].dateCreated,
+                y: theVolume
+            })
+          
+        }   
+        setTotalVolume(totalVolume)
+        setChartData(dataObject)
+    }, [])
+
+
+    
+
+    function updateChart(){
+        let data = workouts;
+
+        let dataObject = [{
+            id: "Volume",
+            color: "hsl(111, 70%, 50%)",
+            data: []
+           
+        }]
+
+        let i,j, k;
+        let totalVolume = 0;
+        for(i = 0; i < data.length; i++){
+
+            let theVolume = 0
+    
+            for(j = 0; j < data[i].exercises.length; j++){       
+                for(k = 0; k < data[i].exercises[j].sets.length; k++){
+                    theVolume += (data[i].exercises[j].sets[k].reps * data[i].exercises[j].sets[k].weight);
+                    totalVolume += (data[i].exercises[j].sets[k].reps * data[i].exercises[j].sets[k].weight);  
+                }
+            }
+            dataObject[0].data.push({
+                x: data[i].dateCreated,
+                y: theVolume
+            })
+
+            
+        }   
+
+        setTotalVolume(totalVolume)
+        setChartData(dataObject)
+    }
+
+
+
 
     function updateWorkouts(newWorkout){
 
         let theWorkouts = workouts;
         theWorkouts.push(newWorkout);
         setWorkouts(theWorkouts)
+        updateChart()
+        alert("FUCK")
         setCounter(counter + 1)
     }
 
@@ -35,7 +115,8 @@ const WorkoutsPage = (props) => {
             setCounter(counter + 1)
             console.log(res)
         })
-
+        updateChart()
+        updateWorkouts()
     }
 
 
@@ -78,7 +159,7 @@ const WorkoutsPage = (props) => {
         }
 
         else if(workoutView === 'on'){
-            return(<WorkoutView data={workoutViewData} theName={props.data.name} closeWorkoutView={setWorkoutView} deleteWorkout={deleteWorkout}/>)
+            return(<WorkoutView data={workoutViewData} theName={props.data.name} closeWorkoutView={setWorkoutView} deleteWorkout={deleteWorkout} updateChart={updateChart}/>)
         }
         
     }
@@ -104,7 +185,91 @@ const WorkoutsPage = (props) => {
 
         </div>
         </div>
-        <div className="statistics-container"></div>
+        <div className="statistics-section">
+            <div className="statistics-container">
+             
+            <div className="stats-info-container">
+                <div className="stat-category-changer">
+                    Volume
+                </div>
+                <div className="stat-category-description">
+                    Last 10 Workouts
+                </div>
+                <div className="total-volume">{totalVolume}</div>
+            </div>
+
+         
+        
+            <ResponsiveLine
+        data={chartData}
+        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        xScale={{ type: 'point' }}
+        yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
+        yFormat=" >-.2f"
+        axisTop={null}
+        axisRight={null}
+        curve='cardinal'
+        axisBottom={{
+            orient: 'bottom',
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: 'Day',
+            legendOffset: 36,
+            legendPosition: 'middle'
+        }}
+        axisLeft={{
+            orient: 'left',
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: 'Volume',
+            legendOffset: -50,
+            legendPosition: 'middle'
+        }}
+        pointSize={10}
+        pointColor={{ theme: 'background' }}
+        pointBorderWidth={2}
+        pointBorderColor={{ from: 'serieColor' }}
+        pointLabelYOffset={-12}
+        useMesh={true}
+        legends={[
+            {
+                anchor: 'bottom-right',
+                direction: 'column',
+                justify: false,
+                translateX: 100,
+                translateY: 0,
+                itemsSpacing: 0,
+                itemDirection: 'left-to-right',
+                itemWidth: 80,
+                itemHeight: 20,
+                itemOpacity: 0.75,
+                symbolSize: 12,
+                symbolShape: 'circle',
+                symbolBorderColor: 'rgba(0, 0, 0, .5)',
+                effects: [
+                    {
+                        on: 'hover',
+                        style: {
+                            itemBackground: 'rgba(0, 0, 0, .03)',
+                            itemOpacity: 1
+                        }
+                    }
+                ]
+            }
+        ]}
+    />
+
+
+
+
+
+
+
+
+            </div>
+        </div>
         <div className="workout-templates-container"></div>
 
 
@@ -112,3 +277,6 @@ const WorkoutsPage = (props) => {
 }
  
 export default WorkoutsPage;
+
+
+//<LineChart workoutData={workouts} chartData={chartData}/>

@@ -1,14 +1,20 @@
 import React, {useState} from 'react';
 import Exercise from "../Exercise/Exercise"
-
+import { useSpring, animated } from 'react-spring'
 import axios from 'axios'
 
-import {Bar, Line} from 'react-chartjs-2'
+
 import "./WorkoutView.css"
 
 const WorkoutView = (props) => {
 
 //Create state change when switching from new to valid workout
+    const workoutViewStyle =useSpring({from: {opacity: 0, marginLeft: -50}, to:{opacity:1, marginLeft: 0}})
+
+    const exerciseCount = useSpring({from:{val : 0} ,to:{val: 6}})
+    const volumeCount = useSpring({from:{val : 0} ,to:{val: 40520}, delay: 200})
+
+    const workoutTitleStyle = useSpring({from: {opacity: 0, marginLeft: -50}, to:{opacity:1, marginLeft: 0}, delay: 200})
 
     const [addExerciseRender, setAddExerciseRender] = useState('off')
   
@@ -116,22 +122,22 @@ const WorkoutView = (props) => {
 
     if(props.new == true){
 
-        return ( <div className="workout-view-container">
+        return ( <animated.div className="workout-view-container">
 
             <div className="workout-view-wrapper">
                 
-                <div className="workout-title"><input className="new-workout-title" placeholder="Enter Workout Title"/></div>
+                <animated.div style={workoutTitleStyle} className="workout-title"><input className="new-workout-title" placeholder="Enter Workout Title"/></animated.div>
                 <button onClick={() => {props.addWorkout(getWorkoutInformation())}}>Submit</button> 
                 <button className="delete-workout-button" onClick={ () => {props.deleteWorkout(props.data._id); props.closeWorkoutView('off')}}>Delete</button>
                 
                 <button className="close-workout-view" onClick={() => {props.closeWorkoutView('off')}}>X</button>
                 </div> 
-         </div> );
+         </animated.div> );
     }
 
     else{
         return(
-            <div className="workout-view-container">
+            <animated.div style={workoutViewStyle} className="workout-view-container">
                 
               <div className="workout-chart-container">
               <button className="close-workout-view" onClick={() => {props.closeWorkoutView('off')}}>Back</button>
@@ -160,22 +166,22 @@ const WorkoutView = (props) => {
                         </div>
 
                         <div className="chart-selector-container">
-                    <div className="chart-selector-button"><span className="selector-button-text">Exercises <span className="selector-number">6</span></span></div>
-                    <div className="chart-selector-button"><span className="selector-button-text">Volume<span className="selector-number">40,520</span></span></div>
-                    <div className="chart-selector-button"><span className="selector-button-text">Rest Time<span className="selector-number">2:13</span></span></div>
-                    <div className="chart-selector-button"><span className="selector-button-text">Duration<span className="selector-number">43:20</span></span></div>
+                    <div className="chart-selector-button"><span className="selector-button-text">Exercises <animated.span style={exerciseCount} className="selector-number">{exerciseCount.val.interpolate(val => Math.floor(val))}</animated.span></span></div>
+                    <div className="chart-selector-button"><span className="selector-button-text">Volume<animated.span style={volumeCount} className="selector-number">{volumeCount.val.interpolate(val => Math.floor(val))}</animated.span></span></div>
+                    <div className="chart-selector-button"><span className="selector-button-text">Rest Time<animated.span className="selector-number">2:13</animated.span></span></div>
+                    <div className="chart-selector-button"><span className="selector-button-text">Duration<animated.span className="selector-number">43:20</animated.span></span></div>
                 </div>
 
                 <div className="workout-view-wrapper">
                     
         
-                        <div className="workout-view-title">{props.data.title}</div> 
+                        <animated.div style={workoutTitleStyle} className="workout-view-title">{props.data.title}</animated.div> 
                         <button className="delete-workout-button" onClick={ () => {props.deleteWorkout(props.data._id); props.closeWorkoutView('off')}}>Delete</button>
                        
                         <div className='exercises-container'>
-                            {exercises.map((exercise) => 
+                            {exercises.map((exercise, index) => 
 
-                            <Exercise data={exercise} workouts={props.data} theName={props.theName} exerciseID={exercise.ID} workoutID={props.data._id} deleteExercise={deleteExercise}/>
+                            <Exercise index={index} data={exercise} workouts={props.data} theName={props.theName} exerciseID={exercise.ID} workoutID={props.data._id} deleteExercise={deleteExercise} updateChart={props.updateChart}/>
                             
                             )}
 
@@ -184,7 +190,7 @@ const WorkoutView = (props) => {
                         
                         <button onClick={() => {setAddExerciseRender('on')}}>Add Exercise</button>
                 </div>
-         </div>
+         </animated.div>
         )
     }
 

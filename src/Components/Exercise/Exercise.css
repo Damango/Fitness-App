@@ -41,3 +41,29 @@
 	right: 10px;
 	top: 10px;
 }
+
+.set-inputs-container {
+	margin-top: 30px;
+}
+
+.weight-input {
+	padding: 10px;
+	margin-right: 10px;
+	font-size: 18px;
+}
+
+.reps-input {
+	padding: 10px;
+	margin-right: 10px;
+	font-size: 18px;
+}
+
+.submit-reps-button {
+	background-color: #2ecc71;
+	color: white;
+	font-family: "Open Sans";
+	font-weight: bold;
+	border-style: none;
+	padding: 10px 15px;
+	font-size: 18px;
+}

@@ -54,7 +54,7 @@ const WorkoutView = (props) => {
 
 
     function deleteExercise(exerciseID){
-
+  
 
         let postObject;
         let exerciseList = exercises;
@@ -72,7 +72,7 @@ const WorkoutView = (props) => {
             setExercises(exerciseList)
             setCounter(counter + 1)
             })
-
+           
     }
 
 

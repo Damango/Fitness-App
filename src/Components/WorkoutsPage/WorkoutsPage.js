@@ -20,42 +20,23 @@ const WorkoutsPage = (props) => {
     const [totalVolume, setTotalVolume] = useState()
 
     useEffect(() => {
-        let data = workouts;
-
-        let dataObject = [{
-            id: "Volume",
-            color: "hsl(111, 70%, 50%)",
-            data: []
-     
-        }]
-
-        let i,j, k;
-        let totalVolume = 0;
-        for(i = 0; i < data.length; i++){
-
-            let theVolume = 0
-    
-            for(j = 0; j < data[i].exercises.length; j++){
-                for(k = 0; k < data[i].exercises[j].sets.length; k++){
-                    theVolume += (data[i].exercises[j].sets[k].reps * data[i].exercises[j].sets[k].weight);
-                    totalVolume += (data[i].exercises[j].sets[k].reps * data[i].exercises[j].sets[k].weight);
-                }
-            }
-            dataObject[0].data.push({
-                x: data[i].dateCreated,
-                y: theVolume
-            })
-          
-        }   
-        setTotalVolume(totalVolume)
-        setChartData(dataObject)
+        updateChart()
     }, [])
 
 
     
 
-    function updateChart(){
-        let data = workouts;
+    function updateChart(sentData){
+        let data = []
+
+        if(sentData == null){
+            data = workouts;
+        }
+        else{
+            data = sentData
+        }
+   
+        console.log(workouts)
 
         let dataObject = [{
             id: "Volume",
@@ -91,13 +72,15 @@ const WorkoutsPage = (props) => {
 
 
 
+
+
     function updateWorkouts(newWorkout){
 
         let theWorkouts = workouts;
         theWorkouts.push(newWorkout);
         setWorkouts(theWorkouts)
         updateChart()
-        alert("FUCK")
+        //alert("FUCK")
         setCounter(counter + 1)
     }
 
@@ -114,9 +97,11 @@ const WorkoutsPage = (props) => {
             setWorkouts(res.data)
             setCounter(counter + 1)
             console.log(res)
+            updateChart(res.data)
         })
-        updateChart()
-        updateWorkouts()
+       
+        
+        //updateWorkouts()
     }
 
 
@@ -202,18 +187,18 @@ const WorkoutsPage = (props) => {
         
             <ResponsiveLine
         data={chartData}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        margin={{ top: 50, right: 110, bottom: 90, left: 60 }}
         xScale={{ type: 'point' }}
         yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
         yFormat=" >-.2f"
         axisTop={null}
         axisRight={null}
-        curve='cardinal'
+        curve='linear'
         axisBottom={{
             orient: 'bottom',
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
+            tickSize: 35,
+            tickPadding: 25,
+            tickRotation: 5,
             legend: 'Day',
             legendOffset: 36,
             legendPosition: 'middle'
@@ -227,6 +212,11 @@ const WorkoutsPage = (props) => {
             legendOffset: -50,
             legendPosition: 'middle'
         }}
+        fill={'#e74c3c'}
+        colors={'#e74c3c'}
+        enableArea={true}
+        areaOpacity={0.5}
+        areaBaselineValue={2000}
         pointSize={10}
         pointColor={{ theme: 'background' }}
         pointBorderWidth={2}
@@ -246,8 +236,8 @@ const WorkoutsPage = (props) => {
                 itemHeight: 20,
                 itemOpacity: 0.75,
                 symbolSize: 12,
-                symbolShape: 'circle',
-                symbolBorderColor: 'rgba(0, 0, 0, .5)',
+                symbolShape: 'square',
+                symbolBorderColor: 'red',
                 effects: [
                     {
                         on: 'hover',

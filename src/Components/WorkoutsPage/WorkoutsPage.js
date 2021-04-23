@@ -170,8 +170,10 @@ const WorkoutsPage = (props) => {
 
         </div>
         </div>
+        <div className="right-side-container">
         <div className="statistics-section">
             <div className="statistics-container">
+                <div className='stat-info-changer-container'>
              
             <div className="stats-info-container">
                 <div className="stat-category-changer">
@@ -180,25 +182,27 @@ const WorkoutsPage = (props) => {
                 <div className="stat-category-description">
                     Last 10 Workouts
                 </div>
-                <div className="total-volume">{totalVolume}</div>
+                </div>
+                
             </div>
-
+            <div className="total-volume">{totalVolume}</div>
          
         
             <ResponsiveLine
         data={chartData}
-        margin={{ top: 50, right: 110, bottom: 90, left: 60 }}
+        margin={{ top: 50, right:30, bottom: 90, left: 60 }}
         xScale={{ type: 'point' }}
         yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
         yFormat=" >-.2f"
         axisTop={null}
         axisRight={null}
-        curve='linear'
+        curve='cardinal'
         axisBottom={{
             orient: 'bottom',
             tickSize: 35,
-            tickPadding: 25,
-            tickRotation: 5,
+            tickPadding: 20,
+           
+            tickRotation: 0,
             legend: 'Day',
             legendOffset: 36,
             legendPosition: 'middle'
@@ -214,8 +218,8 @@ const WorkoutsPage = (props) => {
         }}
         fill={'#e74c3c'}
         colors={'#e74c3c'}
-        enableArea={true}
-        areaOpacity={0.5}
+        enableArea={false}
+        
         areaBaselineValue={2000}
         pointSize={10}
         pointColor={{ theme: 'background' }}
@@ -225,11 +229,11 @@ const WorkoutsPage = (props) => {
         useMesh={true}
         legends={[
             {
-                anchor: 'bottom-right',
+                anchor: 'top',
                 direction: 'column',
                 justify: false,
-                translateX: 100,
-                translateY: 0,
+                translateX: 0,
+                translateY: -20,
                 itemsSpacing: 0,
                 itemDirection: 'left-to-right',
                 itemWidth: 80,
@@ -260,7 +264,64 @@ const WorkoutsPage = (props) => {
 
             </div>
         </div>
-        <div className="workout-templates-container"></div>
+        <div className="templates-list-header">Workout Templates</div>
+            <div className="workout-templates-container">
+               
+                <div className="templates-card-container">
+
+                   
+        
+                    <div className="template-card">
+                            <div className="template-card-title">Push Day</div>
+                            <div className="template-card-categories">
+                                <div className="template-card-category chest-circle"></div>
+                                <div className="template-card-category tricep-circle"></div>
+                                <div className="template-card-category shoulder-circle"></div>
+                            </div>
+                            <div className="template-exercise-count">
+                                Exercise Count
+                            </div>
+                    </div>
+                    <div className="template-card">
+                            <div className="template-card-title">Pull Day</div>
+                            <div className="template-card-categories">
+                                <div className="template-card-category bicep-circle"></div>
+                                <div className="template-card-category back-circle"></div>
+                               
+                            </div>
+                            <div className="template-exercise-count">
+                                Exercise Count
+                            </div>
+                    </div>
+                    <div className="template-card">
+                            <div className="template-card-title">Arm Day</div>
+                            <div className="template-card-categories">
+                                <div className="template-card-category shoulder-circle"></div>
+                                <div className="template-card-category back-circle"></div>
+                                <div className="template-card-category tricep-circle"></div>
+                            </div>
+                            <div className="template-exercise-count">
+                                Exercise Count: 9
+                            </div>
+                    </div>
+                    <div className="template-card">
+                            <div className="template-card-title">Cardio</div>
+                            <div className="template-card-categories">
+                                <div className="template-card-category shoulder-circle"></div>
+                                <div className="template-card-category back-circle"></div>
+                                <div className="template-card-category tricep-circle"></div>
+                            </div>
+                            <div className="template-exercise-count">
+                                Exercise Count: 9
+                            </div>
+                    </div>
+                   
+                    
+
+
+                </div>
+            </div>
+        </div>
 
 
     </div> );

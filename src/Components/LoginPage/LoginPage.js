@@ -52,13 +52,17 @@ const LoginPage = (props) => {
     return ( <div className="login-page-container">
 
         <div className="login-credentials-container">
+          <div className="login-inputs-container">
 
-        <input placeholder="username" className="username"/>
-     <input placeholder="password" className="password"/>
+          <input placeholder="Username" className="username"/>
+     <input placeholder="Password" className="password"/>
+          </div>
+
+       
    
-     <button onClick={getInputs}>LOGIN</button>
+     <button className="login-button" onClick={getInputs}>LOGIN</button>
 
-     <button onClick={registerUser}>REGISTER</button>
+     <button className="register-button" onClick={registerUser}>REGISTER</button>
      
 
 

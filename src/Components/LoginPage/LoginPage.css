@@ -7,11 +7,54 @@
 
 .login-credentials-container {
 	position: relative;
-	background-color: black;
+
 	width: 800px;
-	height: 400px;
+	height: 300px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+
+	padding-right: 40px;
 }
 
 .info-wrapper {
 	color: yellow;
+}
+
+.login-button {
+	position: absolute;
+	left: 0px;
+	background-color: #e74c3c;
+	color: white;
+	border-style: none;
+	padding: 12px 30px;
+	font-size: 30px;
+	font-family: "Poppins";
+	width: 48%;
+	margin-right: 100px;
+}
+
+.register-button {
+	position: absolute;
+	right: 0px;
+	background-color: #e74c3c;
+	color: white;
+	border-style: none;
+	padding: 12px 30px;
+	font-size: 30px;
+	font-family: "Poppins";
+	width: 48%;
+}
+
+.login-inputs-container input {
+	position: relative;
+	padding: 20px;
+	font-family: "Open Sans";
+	display: block;
+	width: 100%;
+	font-size: 30px;
+	margin-bottom: 20px;
+	font-weight: bold;
+	transition: 0.3s;
+	border-radius: 5px;
 }

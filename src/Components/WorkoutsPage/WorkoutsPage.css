@@ -28,31 +28,163 @@
 }
 
 .statistics-section {
-	position: absolute;
-	right: 0px;
+	position: relative;
+	left: 0px;
 	top: 0px;
+	overflow: hidden;
+	padding: 1px;
 }
 
 .statistics-container {
-	height: 500px;
-	width: 1150px;
+	height: 450px;
+	padding: 1px;
+	width: 100%;
+	padding-bottom: 150px;
 }
 
 .stats-info-container {
 	margin-top: 30px;
+	padding-top: 10px;
+}
+
+.stat-info-changer-container {
+	display: inline-block;
 }
 
 .stat-category-changer {
+	position: relative;
 	font-size: 30px;
 	font-weight: bold;
 	padding: 5px 10px;
 	border: 1px solid black;
 	display: inline-block;
+	margin-top: 35px;
+	top: 20px;
+}
+
+.stat-category-description {
+	position: relative;
+	top: 40px;
+	font-family: "Poppins";
+	font-weight: 500;
+
+	font-size: 20px;
 }
 
 .total-volume {
+	position: relative;
 	font-size: 40px;
 	font-weight: bold;
-	margin-top: 20px;
+	margin-left: 0px;
+	top: -15px;
 	color: #2f3640;
+	display: inline-block;
+}
+
+.right-side-container {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+
+	width: 1200px;
+	height: 100vh;
+}
+
+.templates-list-header {
+	font-family: "Roboto";
+	font-weight: bold;
+	font-size: 35px;
+	margin-bottom: 15px;
+	color: #2f3640;
+}
+.workout-templates-container {
+	position: relative;
+
+	height: 200px;
+}
+.templates-card-container {
+	position: relative;
+	padding: 10px;
+	height: 100%;
+	display: flex;
+	justify-content: start;
+	overflow-x: scroll;
+}
+
+.template-card {
+	position: relative;
+	padding: 10px;
+	background-color: white;
+	display: inline-block;
+	min-width: 350px;
+	height: 70px;
+	margin-right: 20px;
+	box-shadow: 0px 0px 1px 2px black;
+}
+.template-card-title {
+	font-family: "Open Sans";
+	font-weight: bold;
+	font-size: 26px;
+	display: inline-block;
+}
+
+.template-card-categories {
+	position: relative;
+
+	float: right;
+
+	height: 25px;
+	width: 100px;
+	display: flex;
+	justify-content: start;
+}
+
+.template-card-category {
+	width: 25px;
+	height: 25px;
+	margin-right: 10px;
+	border-radius: 50%;
+	display: inline-block;
+}
+
+.chest-circle {
+	background-color: orange;
+}
+
+.tricep-circle {
+	background-color: red;
+}
+
+.shoulder-circle {
+	background-color: #4cd137;
+}
+.bicep-circle {
+	background-color: #8e44ad;
+}
+.back-circle {
+	background-color: #3498db;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+	border-radius: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #2c3e50;
+	border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
 }

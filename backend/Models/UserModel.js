@@ -56,6 +56,12 @@ const userSchema = new mongoose.Schema({
         type: [workoutSchema],
         required: true,
         default: []
+    },
+
+    templates:{
+        type: Array,
+        required: true,
+        default: []
     }
 
     

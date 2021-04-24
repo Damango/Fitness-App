@@ -111,60 +111,6 @@
 	overflow-x: scroll;
 }
 
-.template-card {
-	position: relative;
-	padding: 10px;
-	background-color: white;
-	display: inline-block;
-	min-width: 350px;
-	height: 70px;
-	margin-right: 20px;
-	box-shadow: 0px 0px 1px 2px black;
-}
-.template-card-title {
-	font-family: "Open Sans";
-	font-weight: bold;
-	font-size: 26px;
-	display: inline-block;
-}
-
-.template-card-categories {
-	position: relative;
-
-	float: right;
-
-	height: 25px;
-	width: 100px;
-	display: flex;
-	justify-content: start;
-}
-
-.template-card-category {
-	width: 25px;
-	height: 25px;
-	margin-right: 10px;
-	border-radius: 50%;
-	display: inline-block;
-}
-
-.chest-circle {
-	background-color: orange;
-}
-
-.tricep-circle {
-	background-color: red;
-}
-
-.shoulder-circle {
-	background-color: #4cd137;
-}
-.bicep-circle {
-	background-color: #8e44ad;
-}
-.back-circle {
-	background-color: #3498db;
-}
-
 /* width */
 ::-webkit-scrollbar {
 	width: 5px;

@@ -32,17 +32,23 @@ const WorkoutView = (props) => {
     const volumeCount = useSpring({from:{val : 0} ,to:{val: totalVolume}, delay: 200})
 
     
-    const exerciseCount = useSpring({from:{val : 0} ,to:{val: exercises.length}})
+    const exerciseCount = useSpring({from:{val : 0} ,to:{val:(exercises ? exercises.length : 0)}})
+
+    const [barChartData, setBarChartData] = useState(props.templateData)
 
 
-    //console.log(props)
+
 
 
 
     useEffect(() => {
 
-        calculateVolume()
+       
+        if(exercises != null){
+            calculateVolume()
 
+        }
+   
 
     }, [])
 
@@ -56,7 +62,7 @@ const WorkoutView = (props) => {
            
             for(j = 0; j < exerciseList[i].sets.length; j++){
                 volume += (exerciseList[i].sets[j].reps * exerciseList[i].sets[j].weight );
-                console.log(volume)
+                
             }
             
         }
@@ -164,6 +170,25 @@ const WorkoutView = (props) => {
         }
     }
 
+    function createTemplateFromWorkout(){
+        let i;
+        let postObject;
+        let theExercises = exercises;
+        let workoutInfo = {
+            exercises: theExercises
+        }
+        let template = workoutInfo
+        postObject = {
+            name: props.theName,
+            title:props.data.title,
+            template: template
+        }
+        axios.post('http://localhost:5000/user/addTemplate', postObject).then((res) => {
+            console.log(res)
+        })
+
+    }
+
 
 
 
@@ -187,7 +212,8 @@ const WorkoutView = (props) => {
             <animated.div style={workoutViewStyle} className="workout-view-container">
                 
               <div className="workout-chart-container">
-              <BarChart />
+              <BarChart closeWorkoutView={props.closeWorkoutView} data={barChartData} workoutTitle={props.data.title}/>
+              <button onClick={createTemplateFromWorkout} className="make-template-button">Make Template</button>
                         </div>
 
                         <div className="chart-selector-container">

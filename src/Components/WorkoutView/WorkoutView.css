@@ -98,3 +98,8 @@
 
 .workout-view-container input {
 }
+
+.make-template-button {
+	position: absolute;
+	z-index: 10;
+}

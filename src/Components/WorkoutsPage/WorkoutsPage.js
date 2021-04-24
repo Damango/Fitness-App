@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import "./WorkoutsPage.css"
 import Workout from "../Workout/Workout"
 import WorkoutView from '../WorkoutView/WorkoutView'
+import WorkoutTemplateCard from "../WorkoutTemplateCard/WorkoutTemplateCard"
 import LineChart from "../LineChart/LineChart"
 import { ResponsiveLine } from '@nivo/line'
 import axios from 'axios';
@@ -18,6 +19,8 @@ const WorkoutsPage = (props) => {
     const [chartData, setChartData] = useState()
 
     const [totalVolume, setTotalVolume] = useState()
+
+    const [workoutTemplates, setWorkoutTemplates] = useState(props.data.templates)
 
     useEffect(() => {
         updateChart()
@@ -36,7 +39,7 @@ const WorkoutsPage = (props) => {
             data = sentData
         }
    
-        console.log(workouts)
+        
 
         let dataObject = [{
             id: "Volume",
@@ -144,7 +147,7 @@ const WorkoutsPage = (props) => {
         }
 
         else if(workoutView === 'on'){
-            return(<WorkoutView data={workoutViewData} theName={props.data.name} closeWorkoutView={setWorkoutView} deleteWorkout={deleteWorkout} updateChart={updateChart}/>)
+            return(<WorkoutView data={workoutViewData} theName={props.data.name} closeWorkoutView={setWorkoutView} deleteWorkout={deleteWorkout} updateChart={updateChart} templateData={workoutTemplates}/>)
         }
         
     }
@@ -156,6 +159,7 @@ const WorkoutsPage = (props) => {
         {renderWorkoutView()}
 
 
+
         
         <div className="portal-button"></div>
         <div className="workouts-section">
@@ -164,8 +168,8 @@ const WorkoutsPage = (props) => {
         <div className="workouts-list-container">
       
 
-                {workouts.map((workout) => <Workout data={workout} deleteWorkout={deleteWorkout} setWorkoutViewData={setWorkoutViewData} openWorkoutView={setWorkoutView}/>)}
-
+                {workouts.reverse().map((workout) => <Workout data={workout} deleteWorkout={deleteWorkout} setWorkoutViewData={setWorkoutViewData} openWorkoutView={setWorkoutView}/>)}
+                {console.log(workouts.reverse())}
 
 
         </div>
@@ -264,57 +268,14 @@ const WorkoutsPage = (props) => {
 
             </div>
         </div>
-        <div className="templates-list-header">Workout Templates</div>
+        <div className="templates-list-header">Workout Templates <button>Create Template +</button></div>
             <div className="workout-templates-container">
                
                 <div className="templates-card-container">
 
                    
-        
-                    <div className="template-card">
-                            <div className="template-card-title">Push Day</div>
-                            <div className="template-card-categories">
-                                <div className="template-card-category chest-circle"></div>
-                                <div className="template-card-category tricep-circle"></div>
-                                <div className="template-card-category shoulder-circle"></div>
-                            </div>
-                            <div className="template-exercise-count">
-                                Exercise Count
-                            </div>
-                    </div>
-                    <div className="template-card">
-                            <div className="template-card-title">Pull Day</div>
-                            <div className="template-card-categories">
-                                <div className="template-card-category bicep-circle"></div>
-                                <div className="template-card-category back-circle"></div>
-                               
-                            </div>
-                            <div className="template-exercise-count">
-                                Exercise Count
-                            </div>
-                    </div>
-                    <div className="template-card">
-                            <div className="template-card-title">Arm Day</div>
-                            <div className="template-card-categories">
-                                <div className="template-card-category shoulder-circle"></div>
-                                <div className="template-card-category back-circle"></div>
-                                <div className="template-card-category tricep-circle"></div>
-                            </div>
-                            <div className="template-exercise-count">
-                                Exercise Count: 9
-                            </div>
-                    </div>
-                    <div className="template-card">
-                            <div className="template-card-title">Cardio</div>
-                            <div className="template-card-categories">
-                                <div className="template-card-category shoulder-circle"></div>
-                                <div className="template-card-category back-circle"></div>
-                                <div className="template-card-category tricep-circle"></div>
-                            </div>
-                            <div className="template-exercise-count">
-                                Exercise Count: 9
-                            </div>
-                    </div>
+                {workoutTemplates.map((template) => <WorkoutTemplateCard data={template}/>)}
+       
                    
                     
 

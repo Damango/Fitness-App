@@ -9,6 +9,7 @@ const DeleteWorkoutController = require('../controllers/DeleteWorkout')
 const AddExerciseController = require('../controllers/AddExercise');
 const AddSetController = require('../controllers/AddSet');
 const DeleteExerciseController = require('../controllers/DeleteExercise')
+const AddTemplateController = require('../controllers/AddTemplate');
 
 
 
@@ -26,6 +27,8 @@ router.post('/addSet', AddSetController.addSet)
 
 
 router.post('/deleteExercise', DeleteExerciseController.deleteExercise)
+
+router.post('/addTemplate', AddTemplateController.addTemplate)
 
 
 

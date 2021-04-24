@@ -1,7 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Exercise from "../Exercise/Exercise"
 import { useSpring, animated } from 'react-spring'
 import axios from 'axios'
+
+
+import BarChart from "../BarChart/BarChart"
 
 
 import "./WorkoutView.css"
@@ -11,16 +14,60 @@ const WorkoutView = (props) => {
 //Create state change when switching from new to valid workout
     const workoutViewStyle =useSpring({from: {opacity: 0, marginLeft: -50}, to:{opacity:1, marginLeft: 0}})
 
-    const exerciseCount = useSpring({from:{val : 0} ,to:{val: 6}})
-    const volumeCount = useSpring({from:{val : 0} ,to:{val: 40520}, delay: 200})
+   
 
     const workoutTitleStyle = useSpring({from: {opacity: 0, marginLeft: -50}, to:{opacity:1, marginLeft: 0}, delay: 200})
 
     const [addExerciseRender, setAddExerciseRender] = useState('off')
+
+
   
     const [exercises, setExercises] = useState(props.data.exercises);
-    const [counter, setCounter] = useState(0)
 
+
+
+    const [counter, setCounter] = useState(0);
+
+    const [totalVolume, setTotalVolume] = useState(0)
+    const volumeCount = useSpring({from:{val : 0} ,to:{val: totalVolume}, delay: 200})
+
+    
+    const exerciseCount = useSpring({from:{val : 0} ,to:{val: exercises.length}})
+
+
+    //console.log(props)
+
+
+
+    useEffect(() => {
+
+        calculateVolume()
+
+
+    }, [])
+
+    function calculateVolume(){
+
+        let exerciseList = props.data.exercises;
+        let volume = 0;
+        let i,j;
+        
+        for(i = 0; i < exerciseList.length; i++){
+           
+            for(j = 0; j < exerciseList[i].sets.length; j++){
+                volume += (exerciseList[i].sets[j].reps * exerciseList[i].sets[j].weight );
+                console.log(volume)
+            }
+            
+        }
+        console.log(volume)
+        setTotalVolume(volume)
+
+        console.log(totalVolume)
+
+
+        
+    }
 
 
     function getWorkoutInformation(){
@@ -140,29 +187,7 @@ const WorkoutView = (props) => {
             <animated.div style={workoutViewStyle} className="workout-view-container">
                 
               <div className="workout-chart-container">
-              <button className="close-workout-view" onClick={() => {props.closeWorkoutView('off')}}>Back</button>
-              <button className="edit-workout-button" onClick={() => {props.closeWorkoutView('off')}}>Edit</button>
-                  <div className='bars-container'>
-                  
-                  <div className="bar-example example1"></div>
-                  <div className="bar-example example2"></div>
-                  <div className="bar-example example1"></div>
-                  <div className="bar-example example2"></div>
-                  <div className="bar-example example1"></div>
-                  <div className="bar-example example2"></div>
-                  <div className="bar-example example1"></div>
-                  <div className="bar-example example2"></div>
-                  <div className="bar-example example1"></div>
-                  <div className="bar-example example2"></div>
-                  <div className="bar-example example1"></div>
-                  <div className="bar-example example2"></div>
-                     <div className="bar-example example1"></div>
-                  <div className="bar-example example2"></div>
-                  <div className="bar-example example1"></div>
-                  <div className="bar-example example2"></div>
-                  <div className="bar-example example1"></div>
-                  <div className="bar-example example2"></div>
-                  </div>      
+              <BarChart />
                         </div>
 
                         <div className="chart-selector-container">

@@ -37,12 +37,20 @@ const addTemplate = async (req,res,data) =>{
             res.json({
                 message: "That Template Already Exists!"
             })
+            
         }
 
         else{
+
+            let i;
+            let theData = req.body.templateData
+            let templateSkeleton = req.body.templateSkeleton;
+      
+
             let template = {
                 title: req.body.title,
-                exercises: req.body.template.exercises
+                templateSkeleton:templateSkeleton,
+                templateData:theData
              }
     
             templates.push(template)

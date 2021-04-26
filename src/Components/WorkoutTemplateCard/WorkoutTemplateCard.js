@@ -10,7 +10,7 @@ const WorkoutTemplateCard = (props) => {
         <div className="template-card-category back-circle"></div>
           <div className="template-card-category tricep-circle"></div>
       </div>
-      <div className="template-exercise-count">Exercise Count: {props.data.exercises.length}</div>
+      <div className="template-exercise-count">Exercise Count: {props.data.templateSkeleton.length}</div>
     </div>
   );
 };

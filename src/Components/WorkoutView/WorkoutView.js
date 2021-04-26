@@ -52,6 +52,9 @@ const WorkoutView = (props) => {
 
     }, [])
 
+
+   
+
     function calculateVolume(){
 
         let exerciseList = props.data.exercises;
@@ -66,10 +69,10 @@ const WorkoutView = (props) => {
             }
             
         }
-        console.log(volume)
+        //console.log(volume)
         setTotalVolume(volume)
 
-        console.log(totalVolume)
+        //console.log(totalVolume)
 
 
         
@@ -86,24 +89,7 @@ const WorkoutView = (props) => {
     }
 
 
-    function submitExercise(){
 
-        let oldExercises = exercises;
-        let newExercises = oldExercises
-        let exerciseTitle = document.querySelector('.exercise-title-input')
-        let categories = ['Chest']
-        let sets = [];
-
-
-        let newExerciseObject = {
-            title: exerciseTitle,
-            categories: categories,
-            sets: sets
-        }
-
-        newExercises.push(newExerciseObject)
-
-    }
 
 
     function deleteExercise(exerciseID){
@@ -171,21 +157,64 @@ const WorkoutView = (props) => {
     }
 
     function createTemplateFromWorkout(){
+        let theExercises;
+
+        
+
+        
+
+        axios.post('http://localhost:5000/user/getWorkout', {name:props.theName}).then((res) => {
+
         let i;
-        let postObject;
-        let theExercises = exercises;
-        let workoutInfo = {
-            exercises: theExercises
+        for(i = 0; i < res.data.length; i++){
+            if(res.data[i]._id === props.data._id){
+                theExercises = res.data[i]
+            }
         }
-        let template = workoutInfo
+
+
+        let j;
+        let postObject;
+       
+       let workoutInfo = {
+            data: theExercises,
+            date: props.data.dateCreated
+        }
+        let templateData = workoutInfo
+        let templateSkeleton = templateData.data;
+
+        console.log(theExercises)
+
+        for(j = 0; j < templateSkeleton.length; j++){
+
+            templateSkeleton[j].sets = []
+
+        }
+
+        //console.log(templateData)
+
+
         postObject = {
             name: props.theName,
             title:props.data.title,
-            template: template
+            templateData: [templateData],
+            templateSkeleton: templateSkeleton
         }
+
+        //console.log(postObject)
         axios.post('http://localhost:5000/user/addTemplate', postObject).then((res) => {
             console.log(res)
         })
+
+
+
+
+            
+          
+        })
+
+
+    
 
     }
 
@@ -232,7 +261,7 @@ const WorkoutView = (props) => {
                         <div className='exercises-container'>
                             {exercises.map((exercise, index) => 
 
-                            <Exercise index={index} data={exercise} workouts={props.data} theName={props.theName} exerciseID={exercise.ID} workoutID={props.data._id} deleteExercise={deleteExercise} updateChart={props.updateChart}/>
+                            <Exercise  index={index} data={exercise} workouts={props.data} theName={props.theName} exerciseID={exercise.ID} workoutID={props.data._id} deleteExercise={deleteExercise} updateChart={props.updateChart}/>
                             
                             )}
 

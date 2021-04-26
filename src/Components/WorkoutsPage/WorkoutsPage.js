@@ -124,7 +124,7 @@ const WorkoutsPage = (props) => {
                 res.data[res.data.length - 1]
               )
         })
-            //console.log(workoutID)
+            
             
          
             console.log(res)

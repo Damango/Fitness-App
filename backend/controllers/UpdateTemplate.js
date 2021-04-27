@@ -16,16 +16,34 @@ const updateTemplate = async (req,res,data) =>{
 
    User.findOne({name:req.body.name}, {templates: 1}).then(( User) =>{
         
-
         let templateExist = false;
 
+        if(req.body.updateType === 'workout'){
+
+        }
+        else if(req.body.updateType === 'exercise'){
+
+            let workoutID = req.body.workoutID;
+
+            let i;
+
+            let templates = User.templates;
+            console.log(templates[0])
+  
 
 
-        templates = User.templates;
 
 
-   
+            
+        }
 
+        else if(req.body.updateType === 'set'){
+            
+        }
+
+
+
+       /* templates = User.templates;
            User.updateOne({
                 name: req.body.name
             },{
@@ -34,11 +52,8 @@ const updateTemplate = async (req,res,data) =>{
             
             res.json(templates)
              
-            console.log("Template Added")
-        
-      
-        
-
+            console.log("Template Added")*/
+    
     })
 
 

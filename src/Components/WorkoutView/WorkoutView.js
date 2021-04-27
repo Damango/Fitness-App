@@ -135,6 +135,21 @@ const WorkoutView = (props) => {
         axios.post('http://localhost:5000/user/addExercise', postObject ).then( (res) => {
         setExercises(exerciseList)
         })
+
+
+        let templatePostObject = {
+
+            name: props.theName,
+            workoutID: props.data._id,
+            newExercise: exercise,
+            updateType: 'exercise'
+
+
+        }
+
+
+
+        axios.post('http://localhost:5000/user/updateTemplate', templatePostObject ).then( (res) => {})
         setCounter(counter + 1)
 
     }
@@ -206,16 +221,7 @@ const WorkoutView = (props) => {
             console.log(res)
         })
 
-
-
-
-            
-          
         })
-
-
-    
-
     }
 
 

@@ -50,7 +50,8 @@ const addTemplate = async (req,res,data) =>{
             let template = {
                 title: req.body.title,
                 templateSkeleton:templateSkeleton,
-                templateData:theData
+                templateData:theData,
+                id: 'Template#'+Math.floor((Math.random() * 5000)* Math.random() * 5000)
              }
     
             templates.push(template)

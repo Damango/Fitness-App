@@ -60,7 +60,7 @@ const Exercise = (props) => {
 
         newList = oldList;
 
-        axios.post('http://localhost:5000/user/addSet', postObject).then( res =>{
+        axios.post('http://194.195.215.144:5000/user/addSet', postObject).then( res =>{
 
             console.log(res)
         })

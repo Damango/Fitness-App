@@ -28,46 +28,12 @@ function App() {
 
   }
 
-
-
-
-
-
-
-
-
- 
-
-
   return (
     <div className="App">
-    
-
+  
       {renderViews()}
 
-
-
-    
-
-
-
-
-
     </div>
-
-
-
-
-
-     
-
-
-
-
-
-
-
-
 
 
   );

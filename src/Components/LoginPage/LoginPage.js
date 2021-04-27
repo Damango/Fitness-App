@@ -12,7 +12,7 @@ const LoginPage = (props) => {
         let username = document.querySelector('.username').value
         let password = document.querySelector('.password').value
     
-        axios.post('http://localhost:5000/user/login', 
+        axios.post('http://194.195.215.144:5000/user/login', 
         {name: username, password:password})
         .then((res) => {
             console.log(res)
@@ -32,7 +32,7 @@ const LoginPage = (props) => {
 
         let username = document.querySelector('.username').value
         let password = document.querySelector('.password').value
-        axios.post('http://localhost:5000/user/register', 
+        axios.post('http://194.195.215.144:5000/user/register', 
         {name: username, password:password})
         .then((res) => {
             console.log(res)

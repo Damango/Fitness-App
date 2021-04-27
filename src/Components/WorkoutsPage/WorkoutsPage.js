@@ -93,7 +93,7 @@ const WorkoutsPage = (props) => {
 
         
 
-        axios.post('http://localhost:5000/user/deleteWorkout', {name: props.data.name, workoutID: workoutID}).then( (res) => {
+        axios.post('http://194.195.215.144:5000/user/deleteWorkout', {name: props.data.name, workoutID: workoutID}).then( (res) => {
             //console.log(workoutID)
             userData.workouts = res.data
             props.setUserData(userData)
@@ -116,10 +116,10 @@ const WorkoutsPage = (props) => {
 
         let postObject ={name: props.data.name, workouts: props.data.workouts, title: workoutTitle, exercises: exercises}
         
-        axios.post('http://localhost:5000/user/addWorkout', postObject ).then( (res) => {
+        axios.post('http://194.195.215.144:5000/user/addWorkout', postObject ).then( (res) => {
 
 
-        axios.post('http://localhost:5000/user/getWorkout', {name:props.data.name}).then( res =>{
+        axios.post('http://194.195.215.144:5000/user/getWorkout', {name:props.data.name}).then( res =>{
             updateWorkouts(
                 res.data[res.data.length - 1]
               )

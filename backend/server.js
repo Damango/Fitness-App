@@ -29,7 +29,7 @@ const cors = require('cors');
 
 //http://194.195.215.144:3000
 
-const connection = 'http://localhost:3000'
+const connection = 'http://194.195.215.144:3000'
 
 
 

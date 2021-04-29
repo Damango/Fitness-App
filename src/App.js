@@ -13,17 +13,22 @@ function App() {
   const [userData, setUserData] = useState()
 
 
+  //'http://194.195.215.144:3000'
+
+  const theConnection = 'http://localhost:5000'
+
+
 
   function renderViews(){
 
     if(viewState === 'landing-page' && userData != null){
-      return(<LandingPage changeView={setViewState} setUserData={setUserData} userData={userData}/>)
+      return(<LandingPage changeView={setViewState} setUserData={setUserData} userData={userData} connection={theConnection}/>)
     }
     else if(viewState === 'workouts-page'){
-      return(<WorkoutsPage data={userData} setUserData={setUserData} workouts={userData.workouts} changeView={setViewState}/>)
+      return(<WorkoutsPage data={userData} fuck='fuck' setUserData={setUserData} workouts={userData.workouts} changeView={setViewState} theConnection={'http://localhost:5000'}/>)
     }
     else if(viewState === 'login-page'){
-      return(<LoginPage changeView={setViewState} setUserData={setUserData}/>)
+      return(<LoginPage changeView={setViewState} setUserData={setUserData} connection={theConnection}/>)
     }
 
   }

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import "./WorkoutsPage.css"
 import Workout from "../Workout/Workout"
+import CreateWorkout from "../CreateWorkout/CreateWorkout"
 import WorkoutView from '../WorkoutView/WorkoutView'
 import WorkoutTemplateCard from "../WorkoutTemplateCard/WorkoutTemplateCard"
 import LineChart from "../LineChart/LineChart"
@@ -91,9 +92,9 @@ const WorkoutsPage = (props) => {
 
         let userData = props.data
 
-        
+        console.log(props.connection)
 
-        axios.post('http://194.195.215.144:5000/user/deleteWorkout', {name: props.data.name, workoutID: workoutID}).then( (res) => {
+        axios.post(props.connection + '/user/deleteWorkout', {name: props.data.name, workoutID: workoutID}).then( (res) => {
             //console.log(workoutID)
             userData.workouts = res.data
             props.setUserData(userData)
@@ -116,10 +117,10 @@ const WorkoutsPage = (props) => {
 
         let postObject ={name: props.data.name, workouts: props.data.workouts, title: workoutTitle, exercises: exercises}
         
-        axios.post('http://194.195.215.144:5000/user/addWorkout', postObject ).then( (res) => {
+        axios.post(props.connection + '/user/addWorkout', postObject ).then( (res) => {
 
 
-        axios.post('http://194.195.215.144:5000/user/getWorkout', {name:props.data.name}).then( res =>{
+        axios.post(props.connection + '/user/getWorkout', {name:props.data.name}).then( res =>{
             updateWorkouts(
                 res.data[res.data.length - 1]
               )
@@ -143,11 +144,11 @@ const WorkoutsPage = (props) => {
      
 
         else if(workoutView === 'on' && workoutViewData == 'new'){
-            return(<WorkoutView data={workoutViewData} theName={props.data.name} closeWorkoutView={setWorkoutView} deleteWorkout={deleteWorkout} new={true} addWorkout={addWorkout}/>)
+            return(<CreateWorkout data={workoutViewData} theName={props.data.name} closeWorkoutView={setWorkoutView} deleteWorkout={deleteWorkout} new={true} addWorkout={addWorkout} connection={props.connection}/>)
         }
 
         else if(workoutView === 'on'){
-            return(<WorkoutView data={workoutViewData} theName={props.data.name} closeWorkoutView={setWorkoutView} deleteWorkout={deleteWorkout} updateChart={updateChart} templateData={workoutTemplates}/>)
+            return(<WorkoutView data={workoutViewData} theName={props.data.name} closeWorkoutView={setWorkoutView} deleteWorkout={deleteWorkout} updateChart={updateChart} templateData={workoutTemplates} connection={props.connection}/>)
         }
         
     }
@@ -163,14 +164,28 @@ const WorkoutsPage = (props) => {
         
         <div className="portal-button"></div>
         <div className="workouts-section">
-            <div>Workouts</div>
-            <button onClick={() => {setWorkoutViewData('new'); setWorkoutView('on')}}>ADD WORKOUT</button>
+          
+            
         <div className="workouts-list-container">
-      
+        <div className="workouts-list-header-wrapper">
+            <div className='workouts-list-header'>
+                <div className="workouts-list-title">Workouts</div>
+                <button className="add-workout-button" onClick={() => {setWorkoutViewData('new'); setWorkoutView('on')}}>ADD WORKOUT +</button>
+                
+                <div className="alternate-buttons-container">
+                <button>View Chart</button>
+                <button>View Templates</button>
+                </div>
+               
+            
+            </div>
+            </div>
+
+            <div className="workouts-list-wrapper">
 
                 {workouts.reverse().map((workout) => <Workout data={workout} deleteWorkout={deleteWorkout} setWorkoutViewData={setWorkoutViewData} openWorkoutView={setWorkoutView}/>)}
                 {console.log(workouts.reverse())}
-
+                </div>
 
         </div>
         </div>

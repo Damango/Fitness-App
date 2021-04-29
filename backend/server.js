@@ -26,8 +26,20 @@ db.once('open', () => { console.log("-- CONNECTED --") })
 
 
 const cors = require('cors');
+
+//http://194.195.215.144:3000
+
+const connection = 'http://localhost:3000'
+
+
+
 const corsOptions = {
-    origin: 'http://194.195.215.144:3000',
+
+
+
+
+
+    origin: connection,
     credentials: true,            //access-control-allow-credentials:true
     optionSuccessStatus: 200
 }

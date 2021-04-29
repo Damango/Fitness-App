@@ -11,7 +11,7 @@ const LandingPage = (props) => {
     function renderViews(){
 
         if(viewState === 'workouts-page'){
-          return(<WorkoutsPage data={userData} setUserData={setUserData} workouts={userData.workouts} changeView={setViewState}/>)
+          return(<WorkoutsPage data={userData} setUserData={setUserData} workouts={userData.workouts} changeView={setViewState} connection={props.connection}/>)
         }
        
     

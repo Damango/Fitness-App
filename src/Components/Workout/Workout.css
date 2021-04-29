@@ -39,11 +39,12 @@
 	width: auto;
 	display: inline-block;
 	font-weight: 600;
+	margin-right: 20px;
 }
 
 .workout-set-count {
 	display: inline-block;
-	margin-left: 20px;
+
 	background-color: #2f3640;
 	color: white;
 	border-radius: 3px;
@@ -61,4 +62,23 @@
 	top: 50%;
 	transform: translateY(-50%);
 	padding: 5px 10px;
+}
+
+@media only screen and (max-width: 1300px) {
+	.workout-container {
+		padding: 15px;
+	}
+
+	.workout-title {
+		font-size: 16px;
+		margin-right: 8px;
+	}
+
+	.workout-date {
+		padding: 5px 10px;
+	}
+
+	.workout-set-count {
+		padding: 5px 8px;
+	}
 }

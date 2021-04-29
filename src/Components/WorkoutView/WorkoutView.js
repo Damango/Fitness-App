@@ -107,7 +107,7 @@ const WorkoutView = (props) => {
         }
         postObject ={name: props.theName, workoutID: props.data._id, exerciseID:exerciseID}
 
-        axios.post('http://194.195.215.144:5000/user/deleteExercise', postObject ).then( (res) => {
+        axios.post(props.connection + '/user/deleteExercise', postObject ).then( (res) => {
             setExercises(exerciseList)
             setCounter(counter + 1)
             })
@@ -132,7 +132,7 @@ const WorkoutView = (props) => {
 
         exerciseList.push(exercise)
         let postObject ={name: props.theName, workoutID: props.data._id, newExercise:exercise}
-        axios.post('http://194.195.215.144:5000/user/addExercise', postObject ).then( (res) => {
+        axios.post(props.connection + '/user/addExercise', postObject ).then( (res) => {
         setExercises(exerciseList)
         })
 
@@ -149,7 +149,7 @@ const WorkoutView = (props) => {
 
 
 
-        axios.post('http://194.195.215.144:5000/user/updateTemplate', templatePostObject ).then( (res) => {})
+        axios.post(props.connection + '/user/updateTemplate', templatePostObject ).then( (res) => {})
         setCounter(counter + 1)
 
     }
@@ -178,7 +178,7 @@ const WorkoutView = (props) => {
 
         
 
-        axios.post('http://194.195.215.144:5000/user/getWorkout', {name:props.theName}).then((res) => {
+        axios.post(props.connection + '/user/getWorkout', {name:props.theName}).then((res) => {
 
         let i;
         for(i = 0; i < res.data.length; i++){
@@ -217,7 +217,7 @@ const WorkoutView = (props) => {
         }
 
         //console.log(postObject)
-        axios.post('http://194.195.215.144:5000/user/addTemplate', postObject).then((res) => {
+        axios.post(props.connection + '/user/addTemplate', postObject).then((res) => {
             console.log(res)
         })
 
@@ -267,7 +267,7 @@ const WorkoutView = (props) => {
                         <div className='exercises-container'>
                             {exercises.map((exercise, index) => 
 
-                            <Exercise  index={index} data={exercise} workouts={props.data} theName={props.theName} exerciseID={exercise.ID} workoutID={props.data._id} deleteExercise={deleteExercise} updateChart={props.updateChart}/>
+                            <Exercise  index={index} data={exercise} workouts={props.data} theName={props.theName} exerciseID={exercise.ID} workoutID={props.data._id} deleteExercise={deleteExercise} updateChart={props.updateChart} connection={props.connection}/>
                             
                             )}
 

@@ -29,17 +29,12 @@
 }
 
 .workouts-list-header-wrapper {
-	position: fixed;
-
 	width: 30%;
 }
 
 .workouts-list-header {
 	position: relative;
 
-	margin-bottom: 30px;
-
-	top: 30px;
 	left: 50%;
 	transform: translateX(-50%);
 	width: 80%;
@@ -49,12 +44,12 @@
 }
 
 .workouts-list-wrapper {
-	margin-top: 120px;
 }
 
 .workouts-list-title {
-	position: relative;
-	top: 5px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
 	font-family: Roboto;
 	font-weight: bold;
 	color: #2f3640;
@@ -71,7 +66,9 @@
 	border-style: none;
 	padding: 8px 15px;
 	position: absolute;
-	right: 10px;
+	right: 0px;
+	top: 50%;
+	transform: translateY(-50%);
 	transition: 0.3s;
 }
 
@@ -81,10 +78,7 @@
 }
 
 .alternate-buttons-container {
-	position: absolute;
-	right: 10px;
-	top: 50%;
-	transform: translateY(-50%);
+	display: none;
 }
 
 .statistics-section {
@@ -199,6 +193,10 @@
 	.workouts-page-container {
 	}
 
+	.workouts-section {
+		padding-top: 1px;
+	}
+
 	.workouts-list-container {
 		position: relative;
 		height: 93%;
@@ -206,6 +204,8 @@
 
 		padding-bottom: 20px;
 		overflow-y: scroll;
+
+		margin-top: 100px;
 	}
 
 	.statistics-section {
@@ -223,7 +223,21 @@
 	}
 
 	.add-workout-button {
-		margin-left: 30px;
-		position: relative;
+		position: absolute;
+		top: 70px;
+		left: 0px;
+	}
+
+	.alternate-buttons-container {
+		display: inline-block;
+		position: absolute;
+		right: 10px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+
+@media only screen and (max-width: 670px) {
+	.add-workout-button {
 	}
 }

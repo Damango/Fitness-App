@@ -165,8 +165,6 @@ const WorkoutsPage = (props) => {
         <div className="portal-button"></div>
         <div className="workouts-section">
           
-            
-        <div className="workouts-list-container">
         <div className="workouts-list-header-wrapper">
             <div className='workouts-list-header'>
                 <div className="workouts-list-title">Workouts</div>
@@ -180,6 +178,8 @@ const WorkoutsPage = (props) => {
             
             </div>
             </div>
+        <div className="workouts-list-container">
+       
 
             <div className="workouts-list-wrapper">
 

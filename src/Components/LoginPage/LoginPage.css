@@ -8,7 +8,7 @@
 .login-credentials-container {
 	position: relative;
 
-	width: 800px;
+	width: 80%;
 	height: 300px;
 	left: 50%;
 	top: 50%;
@@ -30,7 +30,7 @@
 	padding: 12px 30px;
 	font-size: 30px;
 	font-family: "Poppins";
-	width: 48%;
+	width: 45%;
 	margin-right: 100px;
 }
 
@@ -43,7 +43,8 @@
 	padding: 12px 30px;
 	font-size: 30px;
 	font-family: "Poppins";
-	width: 48%;
+	width: 45%;
+	text-align: center;
 }
 
 .login-inputs-container input {

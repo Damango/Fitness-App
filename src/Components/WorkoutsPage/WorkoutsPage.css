@@ -198,6 +198,10 @@
 	.workouts-page-container {
 	}
 
+	.workouts-list-header-wrapper {
+		z-index: 1 !important;
+	}
+
 	.workouts-section {
 		padding-top: 1px;
 	}
@@ -206,7 +210,7 @@
 		position: relative;
 		height: 93%;
 		width: 95%;
-
+		z-index: 1;
 		padding-bottom: 20px;
 		overflow-y: scroll;
 

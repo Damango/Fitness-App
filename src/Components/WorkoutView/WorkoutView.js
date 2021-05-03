@@ -227,22 +227,9 @@ const WorkoutView = (props) => {
 
 
 
-    if(props.new == true){
 
-        return ( <animated.div className="workout-view-container">
 
-            <div className="workout-view-wrapper">
-                
-                <animated.div style={workoutTitleStyle} className="workout-title"><input className="new-workout-title" placeholder="Enter Workout Title"/></animated.div>
-                <button onClick={() => {props.addWorkout(getWorkoutInformation())}}>Submit</button> 
-                <button className="delete-workout-button" onClick={ () => {props.deleteWorkout(props.data._id); props.closeWorkoutView('off')}}>Delete</button>
-                
-                <button className="close-workout-view" onClick={() => {props.closeWorkoutView('off')}}>X</button>
-                </div> 
-         </animated.div> );
-    }
-
-    else{
+ 
         return(
             <animated.div style={workoutViewStyle} className="workout-view-container">
                 
@@ -278,7 +265,7 @@ const WorkoutView = (props) => {
                 </div>
          </animated.div>
         )
-    }
+    
 
 
 

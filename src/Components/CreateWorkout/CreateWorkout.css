@@ -58,3 +58,26 @@
 	padding: 20px;
 	margin-top: 20px;
 }
+
+@media only screen and (max-width: 1300px) {
+	.create-workout-container {
+		width: 65%;
+	}
+	.create-workout-title-input {
+		width: 90%;
+	}
+
+	.create-workout-button {
+		width: 90%;
+	}
+
+	.cancel-workout-button {
+		width: 90%;
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	.create-workout-container {
+		width: 75%;
+	}
+}

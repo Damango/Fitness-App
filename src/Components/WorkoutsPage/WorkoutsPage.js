@@ -84,7 +84,7 @@ const WorkoutsPage = (props) => {
         theWorkouts.push(newWorkout);
         setWorkouts(theWorkouts)
         updateChart()
-        //alert("FUCK")
+
         setCounter(counter + 1)
     }
 
@@ -95,12 +95,11 @@ const WorkoutsPage = (props) => {
         console.log(props.connection)
 
         axios.post(props.connection + '/user/deleteWorkout', {name: props.data.name, workoutID: workoutID}).then( (res) => {
-            //console.log(workoutID)
             userData.workouts = res.data
             props.setUserData(userData)
             setWorkouts(res.data)
             setCounter(counter + 1)
-            console.log(res)
+           
             updateChart(res.data)
         })
        
@@ -112,7 +111,7 @@ const WorkoutsPage = (props) => {
     function addWorkout(data){
 
         let workoutTitle = data.title;
-        //let exercises = data.exercises
+       
         let exercises = []
 
         let postObject ={name: props.data.name, workouts: props.data.workouts, title: workoutTitle, exercises: exercises}
@@ -153,6 +152,23 @@ const WorkoutsPage = (props) => {
         
     }
 
+    function openMobileChart(){
+
+        alert("F")
+
+
+        document.querySelector('.statistics-container').style.display = 'inline-block'
+
+        document.querySelector('.workouts-list-container').style.display = 'none'
+
+        document.querySelector('.workouts-list-header').style.display = 'none'
+
+
+
+
+
+    }
+
 
 
     return ( <div className="workouts-page-container">
@@ -166,14 +182,15 @@ const WorkoutsPage = (props) => {
         <div className="workouts-section">
           
         <div className="workouts-list-header-wrapper">
+        <div className="alternate-buttons-container">
+                <button onClick={() => {openMobileChart()}}>View Chart</button>
+                <button>View Templates</button>
+                </div>
             <div className='workouts-list-header'>
                 <div className="workouts-list-title">Workouts</div>
                 <button className="add-workout-button" onClick={() => {setWorkoutViewData('new'); setWorkoutView('on')}}>ADD WORKOUT +</button>
                 
-                <div className="alternate-buttons-container">
-                <button>View Chart</button>
-                <button>View Templates</button>
-                </div>
+                
                
             
             </div>
@@ -206,7 +223,7 @@ const WorkoutsPage = (props) => {
             </div>
             <div className="total-volume">{totalVolume}</div>
          
-        
+        <div className="chart-container">
             <ResponsiveLine
         data={chartData}
         margin={{ top: 50, right:30, bottom: 90, left: 60 }}
@@ -274,6 +291,10 @@ const WorkoutsPage = (props) => {
         ]}
     />
 
+</div>
+
+
+
 
 
 
@@ -283,6 +304,7 @@ const WorkoutsPage = (props) => {
 
             </div>
         </div>
+        <div className="templates-wrapper">
         <div className="templates-list-header">Workout Templates <button>Create Template +</button></div>
             <div className="workout-templates-container">
                
@@ -296,6 +318,7 @@ const WorkoutsPage = (props) => {
 
 
                 </div>
+            </div>
             </div>
         </div>
 

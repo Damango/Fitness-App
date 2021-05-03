@@ -139,7 +139,7 @@
 	position: absolute;
 	right: 0px;
 	top: 0px;
-
+	z-index: 0;
 	width: 65%;
 	height: 100vh;
 }
@@ -163,6 +163,11 @@
 	display: flex;
 	justify-content: start;
 	overflow-x: scroll;
+}
+
+.chart-container {
+	width: 100%;
+	height: 100%;
 }
 
 /* width */
@@ -208,18 +213,31 @@
 		margin-top: 100px;
 	}
 
+	.statistics-container {
+		display: none;
+	}
+
+	.templates-wrapper {
+		display: none;
+	}
+
 	.statistics-section {
 	}
 
 	.right-side-container {
 		position: absolute;
-		display: none;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 90%;
 	}
 
 	.workouts-list-header-wrapper {
 		position: fixed;
-
+		z-index: 10;
 		width: 95%;
+	}
+
+	.chart-container {
 	}
 
 	.add-workout-button {
@@ -234,6 +252,7 @@
 		right: 10px;
 		top: 50%;
 		transform: translateY(-50%);
+		z-index: 20;
 	}
 }
 

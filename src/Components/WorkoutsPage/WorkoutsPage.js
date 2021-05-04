@@ -154,8 +154,6 @@ const WorkoutsPage = (props) => {
 
     function openMobileChart(){
 
-        alert("F")
-
 
         document.querySelector('.statistics-container').style.display = 'inline-block'
 
@@ -248,7 +246,7 @@ const WorkoutsPage = (props) => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'Volume',
+          
             legendOffset: -50,
             legendPosition: 'middle'
         }}

@@ -150,6 +150,7 @@ const WorkoutView = (props) => {
 
 
         axios.post(props.connection + '/user/updateTemplate', templatePostObject ).then( (res) => {})
+        setAddExerciseRender('off')
         setCounter(counter + 1)
 
     }
@@ -161,8 +162,8 @@ const WorkoutView = (props) => {
     function exerciseRender(){
         if(addExerciseRender == 'on'){
             return(<div>
-                <span>Exercise Name: <input className="exercise-title-input"/></span>
-                <span>Categories:  <input className="weight-input"/></span>
+                <span><input className="exercise-title-input" placeholder="Exercise Name" /></span>
+               
                 <button onClick={submitExercise}>Submit</button>
             </div>)
         }
@@ -261,7 +262,7 @@ const WorkoutView = (props) => {
                             {exerciseRender()}
                         </div>
                         
-                        <button onClick={() => {setAddExerciseRender('on')}}>Add Exercise</button>
+                        <button onClick={() => {if(addExerciseRender === 'on'){setAddExerciseRender('off')} else{setAddExerciseRender('on')}    }}>Add Exercise</button>
                 </div>
          </animated.div>
         )

@@ -39,8 +39,6 @@ const WorkoutsPage = (props) => {
         else{
             data = sentData
         }
-   
-        
 
         let dataObject = [{
             id: "Volume",
@@ -65,17 +63,11 @@ const WorkoutsPage = (props) => {
                 x: data[i].dateCreated,
                 y: theVolume
             })
-
-            
         }   
 
         setTotalVolume(totalVolume)
         setChartData(dataObject)
     }
-
-
-
-
 
 
     function updateWorkouts(newWorkout){
@@ -103,7 +95,6 @@ const WorkoutsPage = (props) => {
             updateChart(res.data)
         })
        
-        
         //updateWorkouts()
     }
 
@@ -124,9 +115,6 @@ const WorkoutsPage = (props) => {
                 res.data[res.data.length - 1]
               )
         })
-            
-            
-         
             console.log(res)
         })
     }
@@ -140,8 +128,6 @@ const WorkoutsPage = (props) => {
             return('')
         }
 
-     
-
         else if(workoutView === 'on' && workoutViewData == 'new'){
             return(<CreateWorkout data={workoutViewData} theName={props.data.name} closeWorkoutView={setWorkoutView} deleteWorkout={deleteWorkout} new={true} addWorkout={addWorkout} connection={props.connection}/>)
         }
@@ -154,16 +140,25 @@ const WorkoutsPage = (props) => {
 
     function openMobileChart(){
 
-
         document.querySelector('.statistics-container').style.display = 'inline-block'
 
         document.querySelector('.workouts-list-container').style.display = 'none'
 
         document.querySelector('.workouts-list-header').style.display = 'none'
 
+        document.querySelector('.mobile-templates-container').style.display = 'none'
 
+    }
 
+    function openMobileWorkouts(){
 
+        document.querySelector('.statistics-container').style.display = 'none'
+
+        document.querySelector('.workouts-list-container').style.display = 'inline-block'
+
+        document.querySelector('.workouts-list-header').style.display = 'inline-block'
+
+        document.querySelector('.mobile-templates-container').style.display = 'inline-block'
 
     }
 
@@ -173,24 +168,14 @@ const WorkoutsPage = (props) => {
 
         {renderWorkoutView()}
 
-
-
         
-        <div className="portal-button"></div>
         <div className="workouts-section">
           
         <div className="workouts-list-header-wrapper">
-        <div className="alternate-buttons-container">
-                <button onClick={() => {openMobileChart()}}>View Chart</button>
-                <button>View Templates</button>
-                </div>
+       
             <div className='workouts-list-header'>
                 <div className="workouts-list-title">Workouts</div>
                 <button className="add-workout-button" onClick={() => {setWorkoutViewData('new'); setWorkoutView('on')}}>ADD WORKOUT +</button>
-                
-                
-               
-            
             </div>
             </div>
         <div className="workouts-list-container">
@@ -203,7 +188,15 @@ const WorkoutsPage = (props) => {
                 </div>
 
         </div>
+
+        <div className="mobile-templates-container">
+            <h1>My Workouts <span>View All</span></h1>
+
+        <WorkoutTemplateCard data={workoutTemplates[0]}/>
+
         </div>
+        </div>
+       
         <div className="right-side-container">
         <div className="statistics-section">
             <div className="statistics-container">
@@ -318,6 +311,13 @@ const WorkoutsPage = (props) => {
                 </div>
             </div>
             </div>
+            <div className="nav-bar-container">
+               <div className="nav-button">Portal</div>
+
+               <div className="nav-button" onClick={() => {openMobileWorkouts()}}>Workouts</div>
+
+               <div className="nav-button" onClick={() => {openMobileChart()}}>Statistics</div>
+            </div>
         </div>
 
 
@@ -327,4 +327,3 @@ const WorkoutsPage = (props) => {
 export default WorkoutsPage;
 
 
-//<LineChart workoutData={workouts} chartData={chartData}/>

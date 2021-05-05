@@ -115,6 +115,10 @@
 }
 
 @media only screen and (max-width: 1300px) {
+	.workouts-section {
+		height: 40%;
+	}
+
 	.chart-selector-container {
 	}
 	.selector-button-text {

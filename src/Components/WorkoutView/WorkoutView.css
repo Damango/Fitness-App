@@ -109,6 +109,11 @@
 	font-size: 20px;
 }
 
+.delete-workout-button {
+	position: absolute;
+	top: 0px !important;
+}
+
 @media only screen and (max-width: 1300px) {
 	.chart-selector-container {
 	}
